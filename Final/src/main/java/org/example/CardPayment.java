@@ -1,0 +1,1 @@
+package org.example; public class CardPayment implements PaymentMethod { private final int id; public CardPayment(int id){this.id=id;} public boolean processPayment(double amount){return amount>0;} public String getPaymentMethod(){return "Credit Card (demo)";} public int getPaymentID(){return id;} }

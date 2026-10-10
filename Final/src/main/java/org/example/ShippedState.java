@@ -1,0 +1,1 @@
+package org.example; public class ShippedState implements OrderState { public String label(){return "SHIPPED";} public OrderState next(){return new DeliveredState();} public OrderState cancel(){throw new IllegalStateException("Shipped orders cannot be cancelled.");} }

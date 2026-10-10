@@ -1,0 +1,1 @@
+package org.example; public interface OrderObserver { void onOrderStatusChanged(Order order,String oldStatus,String newStatus); }

@@ -1,0 +1,1 @@
+package org.example; public class GCashPayment implements PaymentMethod { private final int id; public GCashPayment(int id){this.id=id;} public boolean processPayment(double amount){return amount>0;} public String getPaymentMethod(){return "GCash (demo)";} public int getPaymentID(){return id;} }

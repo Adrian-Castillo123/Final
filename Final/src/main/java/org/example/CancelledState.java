@@ -1,0 +1,1 @@
+package org.example; public class CancelledState implements OrderState { public String label(){return "CANCELLED";} public OrderState next(){throw new IllegalStateException("Cancelled orders cannot advance.");} public OrderState cancel(){throw new IllegalStateException("Order is already cancelled.");} }

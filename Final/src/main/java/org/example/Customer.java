@@ -1,0 +1,2 @@
+package org.example;
+public class Customer { private final int id; private final String name,email,password,address; public Customer(int id,String name,String email,String password,String address){this.id=id;this.name=name;this.email=email;this.password=password;this.address=address;} public int getCustomerID(){return id;} public String getName(){return name;} public String getEmail(){return email;} public String getAddress(){return address;} boolean passwordMatches(String p){return password.equals(p);} }

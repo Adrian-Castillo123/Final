@@ -1,0 +1,5 @@
+package org.example;
+import java.util.*;
+public class AccountService { private final Map<String,Customer> users=new HashMap<>(); private int id=10001;
+ public Customer signUp(String n,String e,String p,String a){n=n==null?"":n.trim(); e=norm(e); a=a==null?"":a.trim(); if(n.isBlank()||e.isBlank()||p==null||p.isBlank()||a.isBlank())throw new IllegalArgumentException("Complete all sign-up fields."); if(!e.contains("@")||!e.contains("."))throw new IllegalArgumentException("Enter a valid email address."); if(p.length()<6)throw new IllegalArgumentException("Password must have at least 6 characters."); if(users.containsKey(e))throw new IllegalArgumentException("An account with this email already exists."); Customer c=new Customer(id++,n,e,p,a); users.put(e,c); return c; }
+ public Customer signIn(String e,String p){Customer c=users.get(norm(e)); if(c==null||p==null||!c.passwordMatches(p))throw new IllegalArgumentException("Email or password is incorrect. Sign up first if you do not have an account."); return c;} private String norm(String s){return s==null?"":s.trim().toLowerCase(Locale.ROOT);} }

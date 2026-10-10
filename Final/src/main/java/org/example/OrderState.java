@@ -1,0 +1,1 @@
+package org.example; public interface OrderState { String label(); OrderState next(); OrderState cancel(); }

@@ -1,0 +1,1 @@
+package org.example; public class PendingState implements OrderState { public String label(){return "PENDING";} public OrderState next(){return new ConfirmedState();} public OrderState cancel(){return new CancelledState();} }

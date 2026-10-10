@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.LoginController" styleClass="login-background" prefWidth="960" prefHeight="680">
+  <HBox alignment="CENTER" spacing="34" maxWidth="850" maxHeight="570">
+    <VBox alignment="CENTER_LEFT" spacing="18" prefWidth="350">
+      <Label text="✦ ONLINE BOOKSTORE" styleClass="login-brand"/>
+      <Label text="A little escape. A whole new world." styleClass="login-tagline" wrapText="true"/>
+      <Region minHeight="8"/>
+      <Label text="YOUR NEXT CHAPTER STARTS HERE" styleClass="hero-chip"/>
+      <Label text="Discover stories. Collect ideas. Stay curious." styleClass="hero-title" wrapText="true"/>
+      <Label text="A modern mini bookstore for readers, learners, and late-night thinkers." styleClass="subtitle" wrapText="true"/>
+      <HBox spacing="10"><Label text="✧  Curated reads" styleClass="hero-chip"/><Label text="↗  Easy checkout" styleClass="hero-chip"/></HBox>
+    </VBox>
+    <VBox spacing="16" prefWidth="400" styleClass="login-card">
+      <padding><Insets top="24" right="28" bottom="24" left="28"/></padding>
+      <Label text="Welcome back" styleClass="login-heading"/>
+      <Label text="Sign in to continue your reading journey." styleClass="subtitle"/>
+      <TabPane tabClosingPolicy="UNAVAILABLE" prefHeight="390">
+        <tabs>
+          <Tab text="SIGN IN"><VBox spacing="13">
+            <padding><Insets top="22" right="8" bottom="12" left="8"/></padding>
+            <Label text="EMAIL ADDRESS" styleClass="muted"/><TextField fx:id="signInEmail" promptText="you@example.com" maxWidth="Infinity"/>
+            <Label text="PASSWORD" styleClass="muted"/>
+            <HBox spacing="7" alignment="CENTER"><StackPane HBox.hgrow="ALWAYS"><PasswordField fx:id="signInPassword" promptText="Your password" maxWidth="Infinity"/><TextField fx:id="signInPasswordVisible" promptText="Your password" visible="false" managed="false" maxWidth="Infinity"/></StackPane><Button fx:id="signInEyeButton" text="◉" onAction="#toggleSignInPassword" styleClass="eye-button"/></HBox>
+            <Button text="SIGN IN  →" onAction="#signIn" maxWidth="Infinity" styleClass="primary-button"/>
+            <Label text="New here? Open the SIGN UP tab to create an account." wrapText="true" styleClass="muted"/>
+          </VBox></Tab>
+          <Tab text="SIGN UP"><VBox spacing="10">
+            <padding><Insets top="15" right="8" bottom="8" left="8"/></padding>
+            <TextField fx:id="signUpName" promptText="Full name" maxWidth="Infinity"/>
+            <TextField fx:id="signUpEmail" promptText="Email address" maxWidth="Infinity"/>
+            <TextField fx:id="signUpAddress" promptText="Delivery address" maxWidth="Infinity"/>
+            <HBox spacing="7" alignment="CENTER"><StackPane HBox.hgrow="ALWAYS"><PasswordField fx:id="signUpPassword" promptText="Password (6+ characters)" maxWidth="Infinity"/><TextField fx:id="signUpPasswordVisible" promptText="Password (6+ characters)" visible="false" managed="false" maxWidth="Infinity"/></StackPane><Button fx:id="signUpEyeButton" text="◉" onAction="#toggleSignUpPassword" styleClass="eye-button"/></HBox>
+            <Button text="CREATE ACCOUNT  ✦" onAction="#signUp" maxWidth="Infinity" styleClass="primary-button"/>
+            <Label text="✦ YOUR READING JOURNEY STARTS HERE." wrapText="true" styleClass="muted"/>
+          </VBox></Tab>
+        </tabs>
+      </TabPane>
+      <Label text="✦ YOUR DIGITAL BOOKSHELF • MADE FOR READERS" styleClass="muted" wrapText="true"/>
+    </VBox>
+  </HBox>
+</StackPane>

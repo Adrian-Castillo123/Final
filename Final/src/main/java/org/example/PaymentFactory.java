@@ -1,0 +1,1 @@
+package org.example; public final class PaymentFactory { private PaymentFactory(){} public static PaymentMethod create(String s,int id){if("GCash".equals(s))return new GCashPayment(id);if("Credit Card".equals(s))return new CardPayment(id);throw new IllegalArgumentException("Choose a supported payment method.");} }

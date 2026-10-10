@@ -1,0 +1,1 @@
+package org.example; public class ConfirmedState implements OrderState { public String label(){return "CONFIRMED";} public OrderState next(){return new ProcessingState();} public OrderState cancel(){return new CancelledState();} }

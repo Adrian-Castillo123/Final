@@ -1,0 +1,1 @@
+package org.example; public final class AppServices { public static final BookstoreService BOOKSTORE=new BookstoreService(); private AppServices(){} }

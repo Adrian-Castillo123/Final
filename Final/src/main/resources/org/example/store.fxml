@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.StoreController"
+            styleClass="page"
+            prefWidth="1320"
+            prefHeight="820">
+
+  <top>
+    <HBox alignment="CENTER_LEFT" spacing="16" styleClass="topbar">
+      <padding>
+        <Insets top="14" right="24" bottom="14" left="24"/>
+      </padding>
+      <Label text="✦ ONLINE BOOKSTORE" styleClass="brand-inverse"/>
+      <VBox HBox.hgrow="ALWAYS" spacing="3">
+        <Label fx:id="welcomeLabel" text="Welcome" styleClass="welcome"/>
+        <Label fx:id="accountLabel" text="Your reading dashboard" styleClass="muted-inverse"/>
+      </VBox>
+      <Button text="🔔" onAction="#openNotifications" styleClass="notification-bell" accessibleText="Open order notifications"/>
+      <Label fx:id="notificationCountLabel" text="" styleClass="notification-count" visible="false" managed="false" mouseTransparent="true"/>
+      <Button text="Sign Out ↗" onAction="#signOut"/>
+    </HBox>
+  </top>
+
+  <center>
+    <TabPane fx:id="mainTabPane" tabClosingPolicy="UNAVAILABLE">
+      <tabs>
+        <Tab text="  ✧  Discover &amp; Cart  ">
+          <VBox spacing="14">
+            <padding>
+              <Insets top="18" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <HBox spacing="14" styleClass="hero" alignment="CENTER_LEFT">
+              <padding>
+                <Insets top="18" right="22" bottom="18" left="22"/>
+              </padding>
+              <VBox spacing="7" HBox.hgrow="ALWAYS">
+                <Label text="YOUR NEXT GREAT READ IS WAITING" styleClass="hero-chip"/>
+                <Label text="Find your next chapter." styleClass="hero-title"/>
+                <Label text="Browse the shelves, build your cart, and make room for a new idea."
+                       styleClass="hero-subtitle"/>
+              </VBox>
+              <VBox alignment="CENTER" spacing="3">
+                <Label text="✦" style="-fx-font-size: 48px; -fx-text-fill: #b7f4e3;"/>
+                <Label text="READ • LEARN • REPEAT" styleClass="muted"/>
+              </VBox>
+            </HBox>
+
+            <SplitPane dividerPositions="0.66" VBox.vgrow="ALWAYS">
+              <VBox spacing="10">
+                <HBox alignment="CENTER_LEFT" spacing="12">
+                  <Label text="THE SHELVES" styleClass="section-title"/>
+                  <Region HBox.hgrow="ALWAYS"/>
+                  <TextField fx:id="searchField"
+                             promptText="Search title, author, or type…"
+                             prefWidth="270"/>
+                </HBox>
+
+                <TableView fx:id="catalogTable" VBox.vgrow="ALWAYS">
+                  <columns>
+                    <TableColumn fx:id="idColumn" text="#" prefWidth="42"/>
+                    <TableColumn fx:id="titleColumn" text="TITLE" prefWidth="190"/>
+                    <TableColumn fx:id="authorColumn" text="AUTHOR" prefWidth="130"/>
+                    <TableColumn fx:id="priceColumn" text="PRICE" prefWidth="78"/>
+                    <TableColumn fx:id="typeColumn" text="FORMAT" prefWidth="100"/>
+                    <TableColumn fx:id="stockColumn" text="STOCK" prefWidth="65"/>
+                  </columns>
+                </TableView>
+
+                <VBox spacing="5" styleClass="side-card">
+                  <padding>
+                    <Insets top="12" right="14" bottom="12" left="14"/>
+                  </padding>
+                  <Label text="ABOUT THIS PICK" styleClass="section-title"/>
+                  <Label fx:id="itemDetailsLabel"
+                         text="Select a title to see its description."
+                         styleClass="subtitle"
+                         wrapText="true"/>
+                </VBox>
+
+                <Button text="＋  ADD SELECTED TO CART"
+                        onAction="#addSelectedItem"
+                        maxWidth="Infinity"
+                        styleClass="primary-button"/>
+              </VBox>
+
+              <VBox spacing="11" styleClass="cart-panel">
+                <padding>
+                  <Insets top="17" right="17" bottom="17" left="17"/>
+                </padding>
+
+                <HBox alignment="CENTER_LEFT">
+                  <Label text="YOUR CART" styleClass="section-title"/>
+                  <Region HBox.hgrow="ALWAYS"/>
+                  <Label text="✦" style="-fx-font-size: 20px; -fx-text-fill: #b7f4e3;"/>
+                </HBox>
+
+                <Label text="Your next chapter, in one place." styleClass="muted"/>
+                <ListView fx:id="cartList" VBox.vgrow="ALWAYS"/>
+
+                <HBox alignment="CENTER_LEFT">
+                  <Label text="SUBTOTAL" styleClass="muted"/>
+                  <Region HBox.hgrow="ALWAYS"/>
+                  <Label fx:id="cartTotalLabel" text="₱0.00" styleClass="total"/>
+                </HBox>
+
+                <HBox spacing="8">
+                  <Button text="Remove"
+                          onAction="#removeSelectedCartItem"
+                          HBox.hgrow="ALWAYS"/>
+                  <Button text="Clear all"
+                          onAction="#clearCart"
+                          HBox.hgrow="ALWAYS"/>
+                </HBox>
+
+                <Label text="PAYMENT METHOD" styleClass="muted"/>
+                <ComboBox fx:id="paymentCombo" maxWidth="Infinity"/>
+
+                <Button text="CHECKOUT  →"
+                        onAction="#checkout"
+                        maxWidth="Infinity"
+                        styleClass="primary-button"/>
+
+                <Label text="✦ Discover Books • Enjoy Every Chapter"
+                       styleClass="muted"
+                       wrapText="true"/>
+              </VBox>
+            </SplitPane>
+          </VBox>
+        </Tab>
+
+        <Tab fx:id="notificationsTab" text="  ♧  Notifications  ">
+          <VBox spacing="14">
+            <padding>
+              <Insets top="22" right="24" bottom="24" left="24"/>
+            </padding>
+            <Label text="ORDER NOTIFICATIONS" styleClass="section-title"/>
+            <Label text="Your order receipts live here. Click a notification to expand it and view the full receipt." styleClass="subtitle" wrapText="true"/>
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="notification-scroll">
+              <content>
+                <VBox fx:id="notificationsBox" spacing="10" fillWidth="true">
+                  <Label text="No order notifications yet. Your receipt will appear here after checkout." styleClass="subtitle" wrapText="true"/>
+                </VBox>
+              </content>
+            </ScrollPane>
+          </VBox>
+        </Tab>
+      </tabs>
+    </TabPane>
+  </center>
+
+  <bottom>
+    <HBox alignment="CENTER_LEFT"
+          spacing="8"
+          style="-fx-background-color: #10162a; -fx-border-color: #252e49 transparent transparent transparent;">
+      <padding>
+        <Insets top="9" right="20" bottom="9" left="20"/>
+      </padding>
+      <Label text="✦  ONLINE BOOKSTORE" styleClass="muted"/>
+      <Region HBox.hgrow="ALWAYS"/>
+      <Label text="BUILT FOR READERS • JAVA 21 + JAVAFX" styleClass="muted"/>
+    </HBox>
+  </bottom>
+
+</BorderPane>

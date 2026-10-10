@@ -1,0 +1,1 @@
+package org.example; public class ProcessingState implements OrderState { public String label(){return "PROCESSING";} public OrderState next(){return new ShippedState();} public OrderState cancel(){throw new IllegalStateException("Processing orders cannot be cancelled in this demo.");} }
